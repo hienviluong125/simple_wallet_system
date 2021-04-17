@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :transactions, only: %w[new create]
   resources :users, only: [] do
     get :profile, on: :collection
     post :update_profile, on: :collection

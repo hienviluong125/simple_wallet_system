@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :transactions
+
   def can_update_password?(current_password, new_password, new_password_confirmation)
     if current_password.blank?
       self.errors[:base] << "Current password can't be blank"
@@ -31,5 +33,12 @@ class User < ApplicationRecord
     end
 
     true
+  end
+
+  def balance
+    deposit = transactions.with_status('handled').with_type('deposit').sum(:amount)
+    withdraw = transactions.with_status('handled').with_type('withdraw').sum(:amount)
+
+    deposit - withdraw
   end
 end
