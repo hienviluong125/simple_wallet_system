@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-lg-6 col-12 mx-auto mt-5">
+    <h3>Withdraw from your wallet</h3>
+    <%= form_for(@transaction, as: :transaction, url: transactions_path, method: :post) do |f| %>
+    <%= render "devise/shared/error_messages", resource: @transaction %>
+    <%= f.hidden_field :transaction_type, value: 'withdraw' %>
+    <div class="form-group">
+      <%= f.label :amount %>
+      <%= f.number_field :amount, step: :any, class: "form-control", required: false %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Submit", class: 'btn btn-primary w-100 mb-2' %>
+    </div>
+    <% end %>
+  </div>
+</div>
