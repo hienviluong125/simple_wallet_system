@@ -32,7 +32,7 @@
 
     <div class="form-group">
       <%= f.label :gender %>
-      <%= f.select :gender, options_for_select([['Male', 'male'], ['Female', 'female']]), {}, { class: "form form-group form-control" }
+      <%= f.select :gender, options_for_select([['Male', 'male'], ['Female', 'female']], selected: f.object.gender), {}, { class: "form form-group form-control" }
         %>
     </div>
 
