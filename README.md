@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Ruby version: 2.6.6
+### Rails version: 6.0.3.6
 
-Things you may want to cover:
+### Postgres version: 12.x
 
-* Ruby version
+### Gem using:
+- Devise: for basic authentication flow
+- Pagy: pagination
 
-* System dependencies
+### 3rd party using:
+- Heroku: Cloud platform
 
-* Configuration
+### Heroku production
+https://obscure-reaches-08264.herokuapp.com/
 
-* Database creation
+### Environment configuration
+```
+CHAT_IDS=chat_id_1,chat_id_2
+BOT_TOKEN=yourbottoken
+BOT_NAME=yourbotname
+BOT_USERNAME=yourbotusername
+DB_USER=yourdbuser
+DB_NAME=yourdbname
+DB_PASSWORD=yourdbpassword
+DB_HOST=yourdbhost
+DB_PORT=yourdbport
+EXCHANGE_RATE_API_KEY=yourexchangerateapi
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Setup guide
+1. create `.env` on root directory follow `sample.env` file
+2. run `rake db:create` command to create database
+3. run `rake db:migrate` command to run migration
+4. run `rake db:seed` command to generate dump data
+5. run `rails s` command to start server
