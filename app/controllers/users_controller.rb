@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
 
-  def profile; end
+  def profile
+    @transactions = current_user.transactions
+  end
 
   def update_profile
     if @user.update_without_password(users_params)
