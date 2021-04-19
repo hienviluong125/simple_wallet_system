@@ -1,0 +1,36 @@
+<%- status_badges = {"pending": "warning", "cancelled": "danger", "handled": "success"} %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">UID</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Type</th>
+      <th scope="col">Status</th>
+      <th scope="col">User</th>
+      <th scope="col">Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <th scope="row"><%= transaction.id %></th>
+        <td><%= transaction.uid %></td>
+        <td><%= number_to_currency transaction.amount %></td>
+        <td><%= transaction.transaction_type.capitalize %></td>
+        <td>
+          <span class="badge badge-<%= status_badges[transaction.status.to_sym]%>"><%= transaction.status.capitalize %></span>
+        </td>
+        <td><%= transaction.user.email %></td>
+        <td><%= transaction.created_at %></td>
+        <td>
+          <% if transaction.status == "pending" %>
+            <%= link_to "Make it handled", update_status_dashboard_transaction_path(transaction, status: 'handled'), method: :patch, class: 'btn btn-success btn-sm', data: { confirm: 'Are you sure?' } %>
+            <%= link_to "Cancel", update_status_dashboard_transaction_path(transaction, status: 'cancelled'), method: :patch, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

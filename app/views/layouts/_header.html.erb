@@ -15,6 +15,9 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", profile_users_path, class: "dropdown-item" %>
               <%= link_to "Change passsword", change_password_users_path, class: "dropdown-item" %>
+              <% if %w[admin superadmin].include? current_user.role %>
+                <%= link_to "Dashboard", dashboard_root_path, class: "dropdown-item" %>
+              <% end %>
               <div class="dropdown-divider"></div>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
             </div>
