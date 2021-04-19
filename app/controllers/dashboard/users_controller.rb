@@ -3,9 +3,8 @@ class Dashboard::UsersController < Dashboard::BaseController
   before_action :check_is_superadmin, only: %w[edit update]
   before_action :check_permission, only: :update
 
-
   def index
-    @users = User.all
+    @pagy, @users = pagy(User.all)
   end
 
   def edit; end

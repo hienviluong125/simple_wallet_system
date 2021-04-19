@@ -2,7 +2,7 @@ class Dashboard::TransactionsController < Dashboard::BaseController
   include ActionView::Helpers::NumberHelper
 
   def index
-    @transactions = Transaction.all.order(created_at: :desc)
+    @pagy, @transactions = pagy(Transaction.all.order(created_at: :desc))
   end
 
   def update_status
