@@ -1,1 +1,18 @@
-<h2>Currencies rate of today</h2>
+<h2>Currencies rate of today: <%= Date.today.strftime("%d/%m/%Y") %></h2>
+<h3>Base: <%= @base_on %></h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Currency code</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rates.each do |rate| %>
+      <tr>
+        <th scope="row"><%= rate[0] %></th>
+        <td>1 EUR = <%= number_to_currency(rate[1], unit: '') %> <%= rate[0] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
